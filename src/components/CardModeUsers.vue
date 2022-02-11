@@ -26,8 +26,6 @@ export default defineComponent({
   },
 
   setup(props) {
-    console.log('dd',props.users)
-
     const {users} = props
 
     return {

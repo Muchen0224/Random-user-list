@@ -1,12 +1,13 @@
 <template>
   <div class="w-full min-h-screen px-8 py-6 bg-purple-50">
     <ModeControl/>
-    <CardModeUser :users='users'/>
+    <!-- <CardModeUsers :users='data.users'/> -->
+    <ListModeUsers :users='data.users'/>
   </div>
 </template>
 
 <script>
-import {defineComponent, defineAsyncComponent, reactive, onMounted} from 'vue'
+import {defineComponent, defineAsyncComponent, reactive, onBeforeMount} from 'vue'
 import ModeControl from './components/ModeControl.vue'
 import {getRandomUserByPage} from './api/randomUser'
 
@@ -14,18 +15,19 @@ import {getRandomUserByPage} from './api/randomUser'
 export default defineComponent({
   components:{
     ModeControl,
-    CardModeUser:defineAsyncComponent(() => import('./components/CardModeUsers.vue'))
+    CardModeUsers:defineAsyncComponent(() => import('./components/CardModeUsers.vue')),
+    ListModeUsers:defineAsyncComponent(() => import('./components/ListModeUsers.vue'))
   },
   
   setup() {
-    const users = reactive([]);
-    onMounted(async() => {
+    const data = reactive({users:[]});
+    onBeforeMount(async() => {
       const res = await getRandomUserByPage(1)
-      users.value = res.data.results
+      data.users.value = res.data.results
     })
-    console.log(users)
+
     return {
-      users,
+      data
     }
   }
 })
