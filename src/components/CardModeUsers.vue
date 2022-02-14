@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap">
-    <div class="p-6 w-1/5 h-96" v-for="user in users.value" :key="user.id">
+    <div class="p-6 w-1/5 h-96" v-for="user in randomUsers.users" :key="user.id">
       <div class=" flex flex-col items-center justify-center gap-2 rounded-md bg-white h-full shadow hover:shadow-2xl text-lg font-semibold tracking-wide">
         <img :src='user.picture.large' class="max-w-full rounded-full border-double border-4 border-indigo-300">
         <div>
@@ -15,21 +15,18 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import {defineComponent, watch} from 'vue'
 export default defineComponent({
   name:'CardModeUsers',
   props:{
-    users:{
+    randomUsers:{
       type:Object,
       required:true
     }
   },
 
-  setup(props) {
-    const {users} = props
-
+  setup() {
     return {
-      users
     }
   }
 })

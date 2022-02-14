@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-24 bg-white rounded-md shadow-md hover:shadow-xl my-5 flex items-center px-4 py-2" v-for="user in users.value" :key="user.id">
+  <div class="w-full h-24 bg-white rounded-md shadow-md hover:shadow-xl my-5 flex items-center px-4 py-2" v-for="user in randomUsers.users" :key="user.id">
     <div class="w-1/3">
       <img :src='user.picture.medium' class="max-w-full rounded-full border-double border-4 border-indigo-300">
     </div>
@@ -17,17 +17,13 @@ import {defineComponent} from 'vue'
 export default defineComponent({
   name:'ListModeUsers',
   props:{
-    users:{
+    randomUsers:{
       type:Object,
       required:true
     }
   },
 
-  setup(props) {
-    const {users} = props
-    return {
-      users
-    }
+  setup() {
   }
 })
 </script>
