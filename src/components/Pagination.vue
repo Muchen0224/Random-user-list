@@ -1,21 +1,21 @@
 <template>
   <div class="flex justify-center">
     <div class="flex">
-      <PaginationButton v-if="randomUsers.currentPage > 2" @click="handlePageClick(randomUsers.currentPage-1)">
+      <PaginationButton v-if="randomUsers.currentPage > 1" @click="handlePageClick(randomUsers.currentPage-1)">
         <font-awesome-icon :icon="['fas', 'caret-left']" class="mr-2" />
       </PaginationButton>
       <PaginationButton v-if="randomUsers.currentPage > 2" @click="handlePageClick(1)">1</PaginationButton>
-      <PaginationButton v-if="randomUsers.currentPage > 2">
+      <PaginationButton v-if="randomUsers.currentPage > 3">
         <font-awesome-icon :icon="['fas', 'ellipsis']" class="mr-2" />
       </PaginationButton>
       <PaginationButton v-for="page in pageList" :key="page" :class='{active : randomUsers.currentPage === page}' @click="handlePageClick(page)">
         {{page}}
       </PaginationButton>
-      <PaginationButton v-if="randomUsers.currentPage < 100">
+      <PaginationButton v-if="randomUsers.currentPage < 99">
         <font-awesome-icon :icon="['fas', 'ellipsis']" class="mr-2" />
       </PaginationButton>
       <PaginationButton @click="handlePageClick(101,10)" v-if="randomUsers.currentPage < 100">101</PaginationButton>
-      <PaginationButton v-if="randomUsers.currentPage < 100" @click="handlePageClick(randomUsers.currentPage+1)">
+      <PaginationButton v-if="randomUsers.currentPage < 101" @click="handlePageClick(randomUsers.currentPage+1)">
         <font-awesome-icon :icon="['fas', 'caret-right']" class="mr-2" />
       </PaginationButton>
     </div>
