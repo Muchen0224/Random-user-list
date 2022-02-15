@@ -9,19 +9,19 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 export default defineComponent({
-  name:'ModeControl',
-  props:{
-    mode:{
-      type:String,
-      required:true
+  name: 'ModeControl',
+  props: {
+    mode: {
+      type: String,
+      required: true
     }
   },
 
-  setup(props,{emit}) {
+  setup (props, { emit }) {
     const changeMode = (mode:string) => {
-      emit('changeMode',mode)
+      emit('changeMode', mode)
     }
     return {
       changeMode

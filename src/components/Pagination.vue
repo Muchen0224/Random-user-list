@@ -22,38 +22,38 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent,ref,watch} from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import PaginationButton from './PaginationButton.vue'
 export default defineComponent({
-  name:'Pagination',
-  props:{
-    randomUsers:{
-      type:Object,
-      required:true
+  name: 'PaginationComponent',
+  props: {
+    randomUsers: {
+      type: Object,
+      required: true
     }
   },
-  components:{
-    PaginationButton,
+  components: {
+    PaginationButton
   },
 
-  setup(props,{emit}) {
-    let pageList = ref([1,2,3])
+  setup (props, { emit }) {
+    const pageList = ref([1, 2, 3])
 
-    watch(()=> props.randomUsers.currentPage,(cur) => {
-      if(cur <= 2) {
-        pageList.value = [1,2,3]
-      }else if(cur >= 100) {
-        pageList.value = [99,100,101]
-      }else {
-        pageList.value = [cur-1,cur,cur+1]
+    watch(() => props.randomUsers.currentPage, (cur) => {
+      if (cur <= 2) {
+        pageList.value = [1, 2, 3]
+      } else if (cur >= 100) {
+        pageList.value = [99, 100, 101]
+      } else {
+        pageList.value = [cur - 1, cur, cur + 1]
       }
-    },{immediate:true})
+    }, { immediate: true })
 
-    const handlePageClick = (page:number,num = 30) => {
-      if(page === 101) {
-        emit('changePage',{page,num:10})
-      }else{
-        emit('changePage',{page,num})
+    const handlePageClick = (page:number, num = 30) => {
+      if (page === 101) {
+        emit('changePage', { page, num: 10 })
+      } else {
+        emit('changePage', { page, num })
       }
     }
 

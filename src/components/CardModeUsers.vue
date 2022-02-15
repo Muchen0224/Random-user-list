@@ -15,19 +15,19 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 export default defineComponent({
-  name:'CardModeUsers',
-  props:{
-    randomUsers:{
-      type:Object,
-      required:true
+  name: 'CardModeUsers',
+  props: {
+    randomUsers: {
+      type: Object,
+      required: true
     }
   },
 
-  setup(props,{emit}) {
+  setup (props, { emit }) {
     const openModal = (user:Object) => {
-      emit('openModal',user)
+      emit('openModal', user)
     }
     return {
       openModal

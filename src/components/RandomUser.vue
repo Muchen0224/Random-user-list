@@ -15,45 +15,45 @@
   </div>
 </template>
 <script lang='ts'>
-import {defineComponent, defineAsyncComponent, reactive, ref} from 'vue'
+import { defineComponent, defineAsyncComponent, reactive, ref } from 'vue'
 import ModeControl from './ModeControl.vue'
 import Pagination from './Pagination.vue'
 import Loading from './Loading.vue'
-import {getRandomUserByPage} from '../api/randomUser'
+import { getRandomUserByPage } from '../api/randomUser'
 export default defineComponent({
-  name:'RansomUser',
-  components:{
+  name: 'RansomUser',
+  components: {
     ModeControl,
     Pagination,
-    CardModeUsers:defineAsyncComponent(() => import('./CardModeUsers.vue')),
-    ListModeUsers:defineAsyncComponent(() => import('./ListModeUsers.vue')),
-    UserModal:defineAsyncComponent(() => import('./UserModal.vue')),
+    CardModeUsers: defineAsyncComponent(() => import('./CardModeUsers.vue')),
+    ListModeUsers: defineAsyncComponent(() => import('./ListModeUsers.vue')),
+    UserModal: defineAsyncComponent(() => import('./UserModal.vue')),
     Loading
   },
-  
-  async setup() {
-    let randomUsers = reactive({users:[],currentPage:0,mode:'card'})
-    let modeConfig = reactive({modalActive:false,user:{}})
+
+  async setup () {
+    const randomUsers = reactive({ users: [], currentPage: 0, mode: 'card' })
+    const modeConfig = reactive({ modalActive: false, user: {} })
     const usersDom = ref<HTMLElement | null>(null)
 
-    const fetchData = async (page:number,num:number) => {
-      const res = await getRandomUserByPage(page,num)
+    const fetchData = async (page:number, num:number) => {
+      const res = await getRandomUserByPage(page, num)
       randomUsers.users = res.data.results
-      randomUsers.currentPage = res.data.info.page;
-      if(usersDom.value) {
+      randomUsers.currentPage = res.data.info.page
+      if (usersDom.value) {
         usersDom.value.scrollTop = 0
       }
     }
 
-    await fetchData(1,30)
+    await fetchData(1, 30)
 
     interface ChangePageObj {
       page:number,
       num:number
     }
-    
-    const changePage = ({page,num}:ChangePageObj) => {
-      fetchData(page,num)
+
+    const changePage = ({ page, num }:ChangePageObj) => {
+      fetchData(page, num)
     }
 
     const changeMode = (val:string) => {

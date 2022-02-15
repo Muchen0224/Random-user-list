@@ -31,17 +31,17 @@
   </transition>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 export default defineComponent({
-  name:'UserModal',
-  props:{
-    modeConfig:{
-      type:Object,
-      required:true
+  name: 'UserModal',
+  props: {
+    modeConfig: {
+      type: Object,
+      required: true
     }
   },
-  setup(props,{emit}) {
-    const closeModal  = () => {
+  setup (props, { emit }) {
+    const closeModal = () => {
       emit('closeModal')
     }
     return {
@@ -74,4 +74,3 @@ export default defineComponent({
     transform: scale(0.8);
   }
 </style>
-
