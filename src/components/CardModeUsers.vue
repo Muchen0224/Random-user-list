@@ -9,13 +9,13 @@
         <div>
           <font-awesome-icon :icon="['fas', 'location-dot']" class="mr-2" />{{user.location.city}}
         </div>
-        <button class="w-40 h-10 border-2 border-purple-400 text-purple-400 hover:border-none hover:text-white hover:bg-purple-400 tracking-wide font-semibold rounded-md">View Details</button>
+        <button class="w-40 h-10 border-2 border-purple-400 text-purple-400 hover:border-none hover:text-white hover:bg-purple-400 tracking-wide font-semibold rounded-md" @click="openModal(user)">View Details</button>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import {defineComponent, watch} from 'vue'
+import {defineComponent} from 'vue'
 export default defineComponent({
   name:'CardModeUsers',
   props:{
@@ -25,8 +25,12 @@ export default defineComponent({
     }
   },
 
-  setup() {
+  setup(props,{emit}) {
+    const openModal = (user:Object) => {
+      emit('openModal',user)
+    }
     return {
+      openModal
     }
   }
 })

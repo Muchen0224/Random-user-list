@@ -9,7 +9,7 @@
     <div class="w-1/3">
       <font-awesome-icon :icon="['fas', 'location-dot']" class="mr-2" />{{user.location.city}}
     </div>
-    <button class="w-40 h-10 border-2 border-purple-400 text-purple-400 hover:border-none hover:text-white hover:bg-purple-400 tracking-wide font-semibold rounded-md">View Details</button>
+    <button @click="openModal(user)" class="w-40 h-10 border-2 border-purple-400 text-purple-400 hover:border-none hover:text-white hover:bg-purple-400 tracking-wide font-semibold rounded-md">View Details</button>
   </div>
 </template>
 <script lang="ts">
@@ -23,7 +23,13 @@ export default defineComponent({
     }
   },
 
-  setup() {
+  setup(props,{emit}) {
+    const openModal = (user:Object) => {
+      emit('openModal',user)
+    }
+    return {
+      openModal
+    }
   }
 })
 </script>

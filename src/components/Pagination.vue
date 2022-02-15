@@ -71,4 +71,8 @@ export default defineComponent({
     background-color: #c084fc !important;
     border: none !important;
   }
+
+  svg {
+    margin: 0px;
+  }
 </style>

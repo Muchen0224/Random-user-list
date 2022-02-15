@@ -2,7 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-svg {
-  margin: 0px !important;
-}
 
